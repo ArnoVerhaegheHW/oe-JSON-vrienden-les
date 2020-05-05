@@ -11,8 +11,10 @@ window.addEventListener('load', Initieer);
 function Initieer() {
   KoppelElementen();
   KoppelEvents();
-  ShowArrayContent('http://api.icndb.com/jokes', 'value');
-  ToonVrienden();
+  //ShowArrayContent('http://api.icndb.com/jokes', 'value');
+  //ShowArrayContent('js/vrienden.json');
+  //ToonVrienden();
+  LeesVrienden();
 };
 
 const KoppelElementen = () => {
@@ -24,6 +26,29 @@ const KoppelElementen = () => {
   slcVrienden = document.getElementById("slcVrienden");
   txtGeboortejaar = document.getElementById("txtGeboortejaar");
   txtNaam = document.getElementById("txtNaam");
+}
+
+// Schrijf function die de vrienden ophaalt via GetJSON 
+// en die opslaat in de variabele vrienden.
+// Daarna worden de vrienden getoond in de select 
+// en de details getoond in de DOM-elementen.
+
+const LeesVrienden = () => {
+  let pad = 'js/vrienden.json';
+  (async () => {
+    vrienden = await GetJSON(pad);
+    ToonVrienden();
+    slcVrienden.selectedIndex = 0;
+    ToonDetails(0, vrienden);
+  }) ();
+  console.log('vrienden gelezen');
+  (async () => {
+    let memes = await GetJSON('http://api.icndb.com/jokes', 'value');
+    console.log(memes);
+    memes.forEach(meme => {
+      console.log(meme);
+    });
+  })();
 }
 
 const KoppelEvents = () => {
