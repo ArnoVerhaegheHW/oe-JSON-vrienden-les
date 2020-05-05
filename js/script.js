@@ -11,6 +11,7 @@ window.addEventListener('load', Initieer);
 function Initieer() {
   KoppelElementen();
   KoppelEvents();
+  ShowArrayContent('http://api.icndb.com/jokes', 'value');
   ToonVrienden();
 };
 
